@@ -1,15 +1,13 @@
-import http from 'http';
+import http from "http";
 
 const handlers = {
-    'GET': {},
-    'POST': {},
-    'DELETE': {},
-}
+  GET: {},
+  POST: {},
+  DELETE: {},
+};
 
-const server = http.createServer((req, res) => {
-
-})
+const server = http.createServer((req, res) => {});
 
 export const listen = (port, cb) => {
-    server.listen(port, cb);
-}
+  server.listen(port, cb);
+};
