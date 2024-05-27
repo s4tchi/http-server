@@ -28,8 +28,18 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Pull image
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
+            docker run ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
+            - name: executing remote ssh commands using password
+      - uses: appleboy/ssh-action@v1.0.3
+        name: Run image
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
