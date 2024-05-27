@@ -35,4 +35,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
+            docker run ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
