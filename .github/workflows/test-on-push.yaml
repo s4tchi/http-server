@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
- run_tests:
+ Explore-GitHub-Actions:
    runs-on: [ubuntu-latest]
    strategy:
       matrix:
@@ -20,8 +20,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install, build, test
       run: |
-        npm install
-        npm run build
+        npm ci
         npm test
       env:
         CI: true
