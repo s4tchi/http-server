@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npx jest",
+    "test:coverage": "npx jest --coverage",
     "format": "npx prettier . --write",
     "start:dev": "nodemon index",
     "start": "node index"

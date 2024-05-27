@@ -1,25 +1,18 @@
-on:
-  push:
-    tags:
-      - '!refs/tags/*'
-    branches:
-      - '*'
-
+name: Test runner
+run-name: ${{ github.actor }} is test runner
+on: [push]
 jobs:
-  runs-on: [ubuntu-latest]
-  strategy:
-    matrix:
-      node-version: [18.x, 20.x]
-
-  steps:
-  - uses: actions/checkout@v1
-  - name: Use Node.js ${{ matrix.node-version }}
-    uses: actions/setup-node@v1
-    with:
-      node-version: ${{ matrix.node-version }}
-  - name: Install, build, test
-    run: |
-      npm ci
-      npm test
-    env:
-      CI: true
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    strategy: # Это стратегия запусков
+      matrix: # Запускать это задание с разными параметрами
+        node-version: [8.x, 10.x, 12.x] # Версии ноды
+    steps:
+      - uses: actions/checkout@v1 
+      - name: Use Node.js ${{ matrix.node-version }} # Установим ноду
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Test
+        run: |
+          npm run test:coverage
