@@ -8,12 +8,16 @@
     "test": "npx jest",
     "test:coverage": "npx jest --coverage",
     "format": "npx prettier . --write",
+    "lint": "npx eslint",
     "start:dev": "nodemon index",
     "start": "node index"
   },
   "author": "Anderew",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.1",
     "prettier": "^3.2.5"
