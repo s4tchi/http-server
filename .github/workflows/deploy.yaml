@@ -1,8 +1,9 @@
 name: Deploy
+run-name: Deploy
 on:
   push:
     branches: 
-      -master
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,4 +27,23 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
+      - name: Pull image
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
+      - 
+        name: Run image
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker run ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
