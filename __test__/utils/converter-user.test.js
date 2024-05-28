@@ -1,4 +1,4 @@
-const { expect, test, describe } = require("@jest/globals");
+import { expect, test, describe } from "@jest/globals";
 
 describe("converter user", () => {
   test("right", () => {
