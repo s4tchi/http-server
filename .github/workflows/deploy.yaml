@@ -36,8 +36,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
-            docker run ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
-            - name: executing remote ssh commands using password
       - 
         name: Run image
         uses: appleboy/ssh-action@v1.0.3
@@ -47,5 +45,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
             docker run ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:latest
