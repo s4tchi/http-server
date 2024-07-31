@@ -9,6 +9,8 @@ jobs:
         node-version: [18.x] # Версии ноды
     steps:
       - uses: actions/checkout@v1
+      - name: LLL
+        run: echo  ${{ secrets.HOST }} ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }} ${{ secrets.PORT }}
       - name: Use Node.js ${{ matrix.node-version }} # Установим ноду
         uses: actions/setup-node@v1
         with:
